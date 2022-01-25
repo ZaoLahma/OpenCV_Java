@@ -1,0 +1,22 @@
+package com.github.zaolahma;
+
+import org.opencv.core.Mat;
+
+import com.github.zaolahma.camera.Camera;
+import com.github.zaolahma.camera.CameraImpl;
+
+import nu.pattern.OpenCV;
+
+public class Main 
+{
+    public static void main( String[] args )
+    {
+    	OpenCV.loadShared();
+    	
+    	Camera cam = new CameraImpl();
+    	
+    	Mat image = cam.getImage();
+    	
+    	System.out.println("image: " + image.toString());
+    }
+}
