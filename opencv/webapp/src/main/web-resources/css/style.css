@@ -1,0 +1,48 @@
+{
+  box-sizing: border-box;
+}
+
+.menu {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.menu a:link, a:visited {
+  background-color: #48a0d3;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: #f5f5f5;
+}
+
+.menu a:hover {
+  background-color: #52b0e3;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+  padding-bottom: 30px;
+  font-family:Verdana;color:#737373;
+}
+
+.footer {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:#48a0d3;
+  text-align:center;
+  padding:10px;
+  height: 30px;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main {
+    width: 100%;
+  }
+}
