@@ -12,7 +12,8 @@ function connect() {
     };
     websocket.onmessage = function(event) {
         // log the event
-        displayMessage('The response was received! ' + event.data, 'success');
+        //displayMessage('The response was received! ' + event.data, 'success');
+        displayImage(event.data);
     };
     websocket.onerror = function(event) {
         // log the event
@@ -48,6 +49,17 @@ function displayMessage(data, style) {
     var message = document.getElementById('hellomessage');
     message.setAttribute("class", style);
     message.value = data;
+}
+
+function displayImage(data) {
+    var canvas = document.getElementById('image-canvas');
+    var ctxt = canvas.getContext("2d");
+    ctxt.clearRect(0, 0, canvas.width, canvas.height);
+    let image = new Image();
+    image.onload = function() {
+        ctxt.drawImage(image, 0, 0);
+    }
+    image.src = 'data:image/png;base64,' + data;
 }
 
 function displayStatus(status) {
