@@ -2,7 +2,7 @@ var websocket = null;
 
 function connect() {
     var wsProtocol = window.location.protocol == "https:" ? "wss" : "ws";
-    var wsURI = wsProtocol + '://' + window.location.host + '/websocket/camera';
+    var wsURI = wsProtocol + '://' + window.location.host + '/websocket/textcamera';
     websocket = new WebSocket(wsURI);
 
     websocket.onopen = function() {
@@ -57,11 +57,10 @@ function displayImage(data) {
     var ctxt = canvas.getContext("2d");
     ctxt.clearRect(0, 0, canvas.width, canvas.height);
     let image = new Image();
-    image.onload = (event) => {
-        URL.revokeObjectURL(event.target.src)
-        ctxt.drawImage(event.target, 0, 0);
+    image.onload = function() {
+        ctxt.drawImage(image, 0, 0);
     }
-    image.src = URL.createObjectURL(data)
+    image.src = 'data:image/png;base64,' + data;
 }
 
 function displayStatus(status) {

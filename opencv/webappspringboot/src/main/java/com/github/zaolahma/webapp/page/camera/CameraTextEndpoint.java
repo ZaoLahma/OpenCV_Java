@@ -3,11 +3,11 @@ package com.github.zaolahma.webapp.page.camera;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.imageio.ImageIO;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -19,7 +19,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
  */
 
 @Component
-public class CameraEndpoint extends TextWebSocketHandler {
+public class CameraTextEndpoint extends TextWebSocketHandler {
 	
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -61,7 +61,9 @@ public class CameraEndpoint extends TextWebSocketHandler {
             }
         }
         
-        session.sendMessage(new BinaryMessage(os.toByteArray()));
+        final String base64Image = Base64.getEncoder().encodeToString(os.toByteArray());
+        
+        session.sendMessage(new TextMessage(base64Image));
     }
 
     @Override
