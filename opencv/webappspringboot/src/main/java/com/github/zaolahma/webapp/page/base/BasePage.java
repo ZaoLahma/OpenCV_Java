@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.github.zaolahma.webapp.page.camera.CameraPage;
 import com.github.zaolahma.webapp.page.start.StartPage;
 
 public class BasePage extends WebPage {
@@ -15,6 +16,7 @@ public class BasePage extends WebPage {
 	public BasePage(PageParameters params) {
 		mPageParameters = params;
 		add(new BookmarkablePageLink<Void>("Start", StartPage.class));
+		add(new BookmarkablePageLink<Void>("Camera", CameraPage.class));
 		add(new Label("footer", "This is in the footer"));
 	}
 }
