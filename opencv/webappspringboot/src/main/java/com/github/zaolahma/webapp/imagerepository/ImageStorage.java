@@ -33,27 +33,33 @@ public class ImageStorage {
 
 	public void updateImage(byte[] newImage) {
 		synchronized (mSyncObject) {
-			final int X_SIZE = 200;
-			final int Y_SIZE = 100;
+			final int X_SIZE = 320;
+			final int Y_SIZE = 180;
+
+			// System.out.println("newImage.length: " + newImage.length);
 
 			BufferedImage img = new BufferedImage(X_SIZE, Y_SIZE, BufferedImage.TYPE_INT_RGB);
 			int x = 0;
 			int y = 0;
-			for (int byteIndex = 0; byteIndex < newImage.length; ++byteIndex) {
+			for (int byteIndex = 0; byteIndex < newImage.length; byteIndex += 3) {
 				final int r = Byte.toUnsignedInt(newImage[byteIndex]);
-				final int g = Byte.toUnsignedInt(newImage[byteIndex]);
-				final int b = Byte.toUnsignedInt(newImage[byteIndex]);
+				final int g = Byte.toUnsignedInt(newImage[byteIndex + 1]);
+				final int b = Byte.toUnsignedInt(newImage[byteIndex + 2]);
+
+				// System.out.println("r,g,b: " + r + ", " + g + ", " + b);
+
 				int pixel = 0;
 				pixel = (r << 16) | (g << 8) | b;
+
+				// System.out.println("pixel: " + pixel);
+
+				// System.out.println("x, y: " + x + ", " + y);
 
 				img.setRGB(x, y, pixel);
 				x += 1;
 				if (x == X_SIZE) {
 					x = 0;
 					y += 1;
-					if (y == Y_SIZE) {
-						break;
-					}
 				}
 			}
 
