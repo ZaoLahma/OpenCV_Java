@@ -58,7 +58,7 @@ function displayImage(data) {
     ctxt.clearRect(0, 0, canvas.width, canvas.height);
     let image = new Image();
     image.onload = (event) => {
-        URL.revokeObjectURL(event.target.src)
+        URL.revokeObjectURL(event.target.src);
         ctxt.drawImage(event.target, 0, 0);
     }
     image.src = URL.createObjectURL(data)
